@@ -13,9 +13,11 @@ def attemptRemove(filename):
 #remove atm keypairs
 for i in range(1,3):
     attemptRemove('atm/keys/atm{}_PUBkey.pem'.format(i))
+    attemptRemove('server/keys/atm{}_PUBkey.pem'.format(i))
     attemptRemove('atm/keys/atm{}_PRkey.pem'.format(i))
 #remove the server keypair
 attemptRemove('server/keys/server_PUBkey.pem')
+attemptRemove('atm/keys/server_PUBkey.pem')
 attemptRemove('server/keys/server_PRkey.pem')
 
 #remove the customer records
