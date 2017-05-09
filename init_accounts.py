@@ -6,11 +6,11 @@ from passlib.hash import argon2
 from subprocess import call
 
 accounts = [('123456', 'password'),
-			('123457', 'letmein'),
+			('123457', 'Step7#Niner'),
 			('004570', 'itshighnoon'),
 			('000011', 'iminchargenow'),
-			('654321', 'icecream420'),
-			('735132', 'idontreallythinktheresalimittohowlongthesepasswordscanbesoletsjustseehowthisturnsout')]
+			('654321', '000e88a2'),
+			('735132', 'Gpzg<FEv\q6&<!9^')]
 
 account_balances = [('123456', 1234.56),
 					('123457', 56.00),

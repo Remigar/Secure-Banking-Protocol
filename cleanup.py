@@ -22,8 +22,8 @@ attemptRemove('server/keys/server_PRkey.pem')
 
 #remove the customer records
 for filename in os.listdir('server/customer_records/'):
-    if os.path.isfile(filename):
-        attemptRemove(filename)
+    if os.path.isfile('server/customer_records/' + filename):
+        attemptRemove('server/customer_records/' + filename)
 
 #remove the encrypted account login file and account balance files
 attemptRemove('server/account_balances.txt.enc')
