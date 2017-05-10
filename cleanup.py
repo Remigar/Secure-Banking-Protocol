@@ -1,4 +1,4 @@
-#this utility is to remove all the keys and other files created by the project
+#this script removes all the keys and other files created by the project
 import os
 
 def attemptRemove(filename):
