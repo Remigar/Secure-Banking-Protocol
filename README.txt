@@ -8,11 +8,8 @@ RUNNING THE PROJECT:
     sudo pip install passlib
     sudo pip install argon2_cffi
 
-  i) Generate the atm and server public/private key pairs using keygen_util.py
-    e.g. python keygen_util.py
-
-  ii)initialize the account and account balance files using init_accounts.py
-    e.g. python init_accounts.py
+  i) Run the init.py script to initialize the account login and balance files, as well as generate keypairs for the atm and server.
+    e.g. python init.py
     NOTE: you will be prompted for passwords to encrypt both the id/password file and the id/balance files
 
   1. start the server python script with a port number

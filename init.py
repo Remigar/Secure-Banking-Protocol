@@ -58,6 +58,11 @@ from Crypto.PublicKey import RSA
 #create keys for the two atms and write them to the appropriate directories
 #write the atm public keys to the server directory
 
+#create the key directories
+os.mkdir('atm/keys')
+os.mkdir('server/keys')
+#create a directory to hold customer records
+os.mkdir('server/customer_records')
 
 for i in range(1,3):
     key = RSA.generate(2048)
