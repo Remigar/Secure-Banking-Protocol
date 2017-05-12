@@ -44,7 +44,7 @@ AUTH_FAILURE = '0'
 
 atm_num = sys.argv[1]
 serverPort = int(sys.argv[2])
-serverName = 'localhost'
+serverName = sys.argv[3]
 
 # load the atm private key and bank server public key
 if atm_num == '1' or atm_num == '2':
