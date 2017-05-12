@@ -216,6 +216,9 @@ print "Reporting for duty."
 thread1.join()
 thread2.join()
 
+serverSocket1.close()
+serverSocket2.close()
+
 writeAccountBalances(account_balances)
 
 print "Goodnight..."

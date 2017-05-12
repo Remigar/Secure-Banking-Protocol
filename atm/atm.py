@@ -143,7 +143,7 @@ while 1:
 		send_message_enc(controlSocket, choice + amount, MESSAGE_SIZE, pubKey)
 		#get the response from the server
 		response = receive_message_dec(controlSocket, MESSAGE_SIZE, privKey)
-		print response
+		print  '\n' + response
 		if choice == '4':
 			#keep getting more responses until we get an empty storing
 			while response != ' ':

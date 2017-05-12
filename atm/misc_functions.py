@@ -2,7 +2,7 @@ import datetime
 
 
 def displayMenu(id):
-    print '\n\n\n'
+    print '\n'
     print 'Welcome, user {}.'.format(id)
     print 'Select an option:'
     print '\t1) View Balance'

@@ -1,4 +1,5 @@
 #create the account password hash files, as well as initiate the account balances
+#then generate keypairs for the atms and the server
 
 
 import os
@@ -45,3 +46,39 @@ call(cmd2)
 #clean up the plaintext files
 os.remove('server/accountdb.txt')
 os.remove('server/account_balances.txt')
+
+
+#NOTE: I decided to do both account setup and key generation in the same script.
+#generate public/private keypairs for atms 1 and 2 as well as the bank server
+from Crypto.PublicKey import RSA
+
+
+
+
+#create keys for the two atms and write them to the appropriate directories
+#write the atm public keys to the server directory
+
+
+for i in range(1,3):
+    key = RSA.generate(2048)
+    f = open('atm/keys/atm{}_PRkey.pem'.format(i), 'w')
+    f.write(key.exportKey('PEM'))
+    f.close()
+
+    pub_key = key.publickey()
+    file_handlers = (open('atm/keys/atm{}_PUBkey.pem'.format(i), 'w'), open('server/keys/atm{}_PUBkey.pem'.format(i), 'w'))
+    for fh in file_handlers:
+        fh.write(pub_key.exportKey('PEM'))
+        fh.close()
+
+#create keypair for server
+key = RSA.generate(2048)
+f = open('server/keys/server_PRkey.pem', 'w')
+f.write(key.exportKey('PEM'))
+f.close()
+
+pub_key = key.publickey()
+file_handlers = (open('atm/keys/server_PUBkey.pem', 'w'), open('server/keys/server_PUBkey.pem', 'w'))
+for fh in file_handlers:
+    fh.write(pub_key.exportKey('PEM'))
+    fh.close()
