@@ -16,15 +16,15 @@ RUNNING THE PROJECT:
     e.g. python server.py 3000
     NOTE: you will be prompted for the same passwords you used earlier to encrypt the account files
 
-  2. Once the server has been started, start the atm program in separate terminal windows, specify an atm number and port number
-    e.g. python atm.py 1 3000
-         python atm.py 2 3001
+  2. Once the server has been started, start the atm program in separate terminal windows, specify an atm number, port number, and server address
+    e.g. python atm.py 1 3000 localhost
+         python atm.py 2 3001 localhost
     NOTE: The port supplied to atm 1 must be the port supplied to the server program. The port for the second atm is the same number incremented by 1.
 
   3. From the atm program, you may enter your credentials to authenticate against the bank server
     example credentials: ID: 123456 password: 'password'
                          ID: 004570 password: 'itshighnoon'
-    more ID/password pairs may be found in the init_accounts.py files
+    more ID/password pairs may be found in the init.py file
 
   4. Once authenticated, you will have the following options as a user:
       a)View your current balances
