@@ -46,12 +46,6 @@ atm_num = sys.argv[1]
 serverPort = int(sys.argv[2])
 serverName = 'localhost'
 
-# initiate the socket for atm-server communications
-controlSocket = socket(AF_INET, SOCK_STREAM)
-
-# attempt to connect to the atm server
-controlSocket.connect((serverName, serverPort))
-
 # load the atm private key and bank server public key
 if atm_num == '1' or atm_num == '2':
 	file_handlers = (open('keys/atm{}_PRkey.pem'.format(atm_num), 'r'),
@@ -62,6 +56,13 @@ else:
 	print "ERROR: {} is not a valid atm number.".format(atm_num)
 	exit(-1)
 
+
+
+# initiate the socket for atm-server communications
+controlSocket = socket(AF_INET, SOCK_STREAM)
+
+# attempt to connect to the atm server
+controlSocket.connect((serverName, serverPort))
 
 while 1:
 	while 1:
