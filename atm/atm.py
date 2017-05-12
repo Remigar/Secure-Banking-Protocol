@@ -57,7 +57,6 @@ else:
 	exit(-1)
 
 
-
 # initiate the socket for atm-server communications
 controlSocket = socket(AF_INET, SOCK_STREAM)
 
@@ -80,10 +79,6 @@ while 1:
 		# prevent password from being echo'd to the terminal using getpass()
 		password = getpass()
 		#NOTE: now that we're using argon2, we're no longer hashing passwords before sending them.
-		'''#hash the password
-		hasher = SHA512.new()
-		hasher.update(password)
-		hashed_pw = hasher.hexdigest()'''
 		credentials = (username, password)
 		creds = ' '.join(credentials)
 

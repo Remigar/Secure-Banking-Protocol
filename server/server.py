@@ -170,24 +170,7 @@ def service_connection(sock, atm_num):
 				return
 
 
-# kind of a hack solution for storing accounts, this can definitely be improved on.
-# store records in an encrypted file, no plaintext!
-# even if the file is encrypted, dont store the actual passwords!
-# store a hash of the passwords.
-'''accounts = [('123456', 'password'),
-			('123457', 'letmein'),
-			('004570', 'itshighnoon'),
-			('000011', 'iminchargenow'),
-			('654321', 'icecream'),
-			('735132', 'idontreallythinktheresalimittohowlongthesepasswordscanbesoletsjustseehowthisturnsout')]
-#TODO: store this info in an encrypted file, decrpyt and load into memory on start up
-#on shutdown, write back into file and encrypt once more
-account_balances = [('123456', 1234.56),
-					('123457', 56.00),
-					('004570', 12.00),
-					('000011', 100.00),
-					('654321', 654321.00),
-					('735132', 245735612341275684567.00)]'''
+
 
 #instead of hardcoded accounts and balances, we now load them from files
 accounts, account_balances = loadAccounts()
