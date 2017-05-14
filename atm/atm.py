@@ -15,6 +15,7 @@ from getpass import getpass
 from Crypto.PublicKey import RSA
 from socket import *
 from misc_functions import displayMenu
+import datetime
 
 
 
@@ -83,9 +84,10 @@ while 1:
 		creds = ' '.join(credentials)
 
 		print "Validating..."
-
+		#generate a timestamp for this login request
+		timestamp = datetime.datetime.now().strftime('%Y-%m-%d%H:%M:%S')
 		#send credentials to the server(encrypted with the server's public key)
-		send_message_enc(controlSocket, creds, MESSAGE_SIZE, pubKey)
+		send_message_enc(controlSocket, creds + ' ' + timestamp, MESSAGE_SIZE, pubKey)
 
 		#not quite sure if this adequately clears the password provided from memory, more research required
 		password = None
@@ -98,7 +100,7 @@ while 1:
 			print "Authentication Successful!"
 			break
 		else:
-			print "Authentication failed: account number does not exist or incorrect password."
+			print "Authentication failed: account number does not exist or incorrect password or request timed out."
 			continue #go through the process again
 	#now to do the actual banking stuff.
 	while 1:

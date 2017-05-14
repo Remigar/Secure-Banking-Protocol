@@ -8,6 +8,7 @@ from socket import *
 import sys
 import threading
 from misc_functions import recordHistory, loadAccounts, writeAccountBalances
+import datetime
 
 MESSAGE_SIZE = 256
 AUTH_SUCCESS = '1'
@@ -47,7 +48,6 @@ def service_connection(sock, atm_num):
 		while 1:
 			# receive credentials from the atm
 			dec_creds = receive_message_dec(connectionSocket, MESSAGE_SIZE, privKey)
-
 			print "Credentials received."
 			# the credentials were encrypted with the server's public key
 			# so we decrypt it with out private key.
@@ -56,6 +56,21 @@ def service_connection(sock, atm_num):
 
 			dec_creds = dec_creds.split()
 			creds = (dec_creds[0], dec_creds[1])
+			timestamp = datetime.datetime.strptime(dec_creds[2], '%Y-%m-%d%H:%M:%S')
+			now = datetime.datetime.now().strftime('%Y-%m-%d%H:%M:%S')
+			now2 = datetime.datetime.strptime(now, '%Y-%m-%d%H:%M:%S')
+			#compare the time the request was sent to now, if it exceeds some threshold, decline the credentials.
+			latency = now2 - timestamp
+			latency_s = latency.total_seconds()
+			print 'Latency:' + str(latency_s)
+			#Let's have the grace period for login requests be 5 seconds
+			if latency_s > 5 or latency_s < -5:
+				#the request timed out or someone tried a replay attack!
+				send_message_enc(connectionSocket, AUTH_FAILURE, MESSAGE_SIZE, pubKey)
+				continue
+			#else: we continue to validate the user
+
+
 			#erase the decrypted credentials
 			dec_creds = None
 
