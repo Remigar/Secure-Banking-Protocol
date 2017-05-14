@@ -59,14 +59,16 @@ def service_connection(sock, atm_num):
 			timestamp = datetime.datetime.strptime(dec_creds[2], '%Y-%m-%d%H:%M:%S')
 			now = datetime.datetime.now().strftime('%Y-%m-%d%H:%M:%S')
 			now2 = datetime.datetime.strptime(now, '%Y-%m-%d%H:%M:%S')
-			#compare the time the request was sent to now, if it exceeds some threshold, decline the credentials.
+			#compare the time the request was sent to the time we received it, if it exceeds some threshold, decline the credentials.
 			latency = now2 - timestamp
 			latency_s = latency.total_seconds()
 			print 'Latency:' + str(latency_s)
 			#Let's have the grace period for login requests be 5 seconds
 			if latency_s > 5 or latency_s < -5:
 				#the request timed out or someone tried a replay attack!
+				print 'Request timed out.'
 				send_message_enc(connectionSocket, AUTH_FAILURE, MESSAGE_SIZE, pubKey)
+				recordHistory(creds[0], 'login', True)
 				continue
 			#else: we continue to validate the user
 

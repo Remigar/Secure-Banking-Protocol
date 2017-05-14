@@ -143,7 +143,7 @@ while 1:
 		response = receive_message_dec(controlSocket, MESSAGE_SIZE, privKey)
 		print  '\n' + response
 		if choice == '4':
-			#keep getting more responses until we get an empty storing
+			#keep getting more responses until we get an empty string
 			while response != ' ':
 				response = receive_message_dec(controlSocket, MESSAGE_SIZE, privKey)
 				print response
